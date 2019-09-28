@@ -7,20 +7,37 @@ import (
 )
 type AppConfig struct {
 	PathConfig
+	VFConfig
+	IPAllocate
+	EtcdConfig
+	LogConfig
 }
 
 type PathConfig struct {
 	SavePath string
 }
+type LogConfig struct {
+	LogPath string
+}
+type VFConfig struct {
+	VFName string
+}
+type IPAllocate struct{
+	Subnet string
+}
+type EtcdConfig struct{
+	EtcdAddr []string
+}
 
-var Config *AppConfig
+
+var Appcfg *AppConfig
 func init()  {
 	configPath := "src/config-writer/config/app.ini"
 	config, err := ReadConfig(configPath)
 	if err != nil{
 		return
 	}
-	Config = config
+	Appcfg = config
 }
 
 func ReadConfig(configPath string) (appConfig *AppConfig, err error){

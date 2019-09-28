@@ -1,4 +1,8 @@
 {
+  "name": "mynet",
+  "type": "ipvlan",
+  "if0": "enp24s0",
+  "mode": "bridge",
   "ipam": {
     "type": "host-local",
     "subnet": "10.10.0.0/16",

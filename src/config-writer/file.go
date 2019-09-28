@@ -50,6 +50,7 @@ func ReadJsonFile(path string) (hostlocal *types.HostLocal, err error) {
 	}
 	err = json.Unmarshal(byteValue, &hostlocal)
 	if err != nil {
+
 		return nil, err
 	}
 	return hostlocal, nil
