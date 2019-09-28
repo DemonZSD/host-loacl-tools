@@ -13,26 +13,27 @@
 // under the License.
 
 // author: Weshzhu
-package log
+package logger
 
 import (
 	"config-writer/config"
-	"fmt"
 	"github.com/lestrrat/go-file-rotatelogs"
 	"github.com/rifflock/lfshook"
 	"github.com/sirupsen/logrus"
 	"os"
 	"time"
+	"log"
+	"fmt"
 )
 
-var Logger *logrus.Logger
+var logger *logrus.Logger
 
 func init() {
-	log, err := initLogger()
+	logr, err := initLogger()
 	if err != nil {
-		log.Errorln(fmt.Sprintf("init logger failed: %v", err))
+		log.Println(fmt.Sprintf("init logger failed: %v", err))
 	}
-	Logger = log
+	logger = logr
 }
 
 func initLogger() (*logrus.Logger, error) {
@@ -44,7 +45,7 @@ func initLogger() (*logrus.Logger, error) {
 		}
 	}
 	writer, err := rotatelogs.New(
-		logDir+"host-local-tools-log%Y%m%d",
+		logDir+"/%Y%m%dhost-local-tools.log",
 		rotatelogs.WithRotationTime(24*time.Hour),
 		rotatelogs.WithMaxAge(30*24*time.Hour),
 	)
@@ -63,4 +64,8 @@ func initLogger() (*logrus.Logger, error) {
 		&logrus.TextFormatter{},
 	))
 	return log, nil
+}
+
+func GetLog() *logrus.Logger{
+	return logger
 }
