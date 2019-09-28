@@ -12,11 +12,11 @@ import (
 
 // 读取 虚拟网卡个数
 type VFInfo struct {
-	count int
+	count  int
 	master string
 }
 
-func (vf *VFInfo) ReadVFNum() (int, error){
+func (vf *VFInfo) ReadVFNum() (int, error) {
 	sriovFile := fmt.Sprintf("/sys/class/net/%s/device/sriov_numvfs", vf.master)
 	if _, err := os.Lstat(sriovFile); err != nil {
 		return -1, fmt.Errorf("failed to open the sriov_numfs of device %q: %v", vf.master, err)
@@ -31,15 +31,15 @@ func (vf *VFInfo) ReadVFNum() (int, error){
 	}
 	sriovNumfs := strings.TrimSpace(string(data))
 	vfTotal, err := strconv.Atoi(sriovNumfs)
-	if err != nil{
+	if err != nil {
 		return -1, fmt.Errorf("format num failed %v", err)
 	}
 	return vfTotal, nil
 }
 
 func ReadJsonFile(path string) (hostlocal *types.HostLocal, err error) {
-	path1 := "src/config-writer/template/host-local.json"
-	jsonFile, err := os.Open(path1)
+
+	jsonFile, err := os.Open(path)
 	if err != nil {
 		return nil, err
 	}

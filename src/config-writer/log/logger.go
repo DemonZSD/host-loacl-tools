@@ -16,38 +16,37 @@
 package log
 
 import (
-	"github.com/sirupsen/logrus"
-	"os"
 	"config-writer/config"
+	"fmt"
 	"github.com/lestrrat/go-file-rotatelogs"
 	"github.com/rifflock/lfshook"
+	"github.com/sirupsen/logrus"
+	"os"
 	"time"
-	"fmt"
 )
 
 var Logger *logrus.Logger
 
 func init() {
-	log,err := initLogger()
+	log, err := initLogger()
 	if err != nil {
-		log.Errorln(fmt.Sprintf("init logger failed: %v",err))
+		log.Errorln(fmt.Sprintf("init logger failed: %v", err))
 	}
 	Logger = log
 }
 
-
-func initLogger() (*logrus.Logger, error){
+func initLogger() (*logrus.Logger, error) {
 	var logDir = config.Appcfg.LogPath
-	if _, err := os.Stat(logDir); err != nil{
+	if _, err := os.Stat(logDir); err != nil {
 		err := os.Mkdir(logDir, os.ModePerm)
 		if err != nil {
 			return nil, err
 		}
 	}
 	writer, err := rotatelogs.New(
-		logDir + "log%Y%m%d",
+		logDir+"host-local-tools-log%Y%m%d",
 		rotatelogs.WithRotationTime(24*time.Hour),
-		rotatelogs.WithMaxAge(30 * 24 * time.Hour),
+		rotatelogs.WithMaxAge(30*24*time.Hour),
 	)
 	if err != nil {
 		return nil, err
@@ -56,12 +55,12 @@ func initLogger() (*logrus.Logger, error){
 	log.AddHook(lfshook.NewHook(
 		lfshook.WriterMap{
 			logrus.DebugLevel: writer,
-			logrus.InfoLevel: writer,
-			logrus.WarnLevel: writer,
+			logrus.InfoLevel:  writer,
+			logrus.WarnLevel:  writer,
 			logrus.ErrorLevel: writer,
 			logrus.PanicLevel: writer,
 		},
 		&logrus.TextFormatter{},
-		))
+	))
 	return log, nil
 }

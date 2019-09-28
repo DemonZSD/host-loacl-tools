@@ -6,18 +6,15 @@ import (
 	"fmt"
 )
 
-func main(){
-	var aa = config.Appcfg
-	fmt.Println(aa.SavePath)
+func main() {
+	var cfg = config.Appcfg
+	fmt.Println(cfg.SavePath)
 	path1 := "src/config-writer/template/host-local.json"
 	hostlocal, err := config_writer.ReadJsonFile(path1)
 	if err != nil {
-		fmt.Println("read template failed")
+		fmt.Println(fmt.Sprintf("read template failed: %v", err))
 	}
-	fmt.Println(hostlocal)
-	fmt.Println(aa.EtcdAddr)
-	fmt.Println(aa.LogPath)
-
-
-
+	fmt.Println(fmt.Sprintf("hostlocal: %#v", hostlocal))
+	fmt.Println(cfg.EtcdAddr)
+	fmt.Println(cfg.LogPath)
 }

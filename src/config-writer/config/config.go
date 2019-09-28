@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"gopkg.in/ini.v1"
 )
+
 type AppConfig struct {
 	PathConfig
 	VFConfig
@@ -22,32 +23,32 @@ type LogConfig struct {
 type VFConfig struct {
 	VFName string
 }
-type IPAllocate struct{
+type IPAllocate struct {
 	Subnet string
 }
-type EtcdConfig struct{
+type EtcdConfig struct {
 	EtcdAddr []string
 }
 
-
 var Appcfg *AppConfig
-func init()  {
+
+func init() {
 	configPath := "src/config-writer/config/app.ini"
 	config, err := ReadConfig(configPath)
-	if err != nil{
+	if err != nil {
 		return
 	}
 	Appcfg = config
 }
 
-func ReadConfig(configPath string) (appConfig *AppConfig, err error){
+func ReadConfig(configPath string) (appConfig *AppConfig, err error) {
 	cfg, err := ini.Load(configPath)
 	if err != nil {
-		return appConfig, errors.New(fmt.Sprintf("parse config file failed: %v", err))
+		return appConfig, errors.New(fmt.Sprintf("load config file failed: %v", err))
 	}
 	appConfig = new(AppConfig)
 	err = cfg.MapTo(appConfig)
-	if err!=nil{
+	if err != nil {
 		return appConfig, errors.New(fmt.Sprintf("parse config file failed: %v", err))
 	}
 	return appConfig, nil
