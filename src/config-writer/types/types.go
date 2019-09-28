@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"github.com/containernetworking/cni/pkg/types"
 	"net"
+	"config-writer/utils"
 )
 
 type HostLocal struct {
@@ -35,9 +36,11 @@ func (r *Route) String() string {
 	return fmt.Sprintf("%+v", *r)
 }
 
-func (rangeIp *Range)GenerateIpRanges(begain string, end string){
-	rangeIp.RangeStart = net.ParseIP(begain)
-	rangeIp.RangeEnd = net.ParseIP(end)
+func (rangeIp *Range) SetIpRanges(begain , end net.IP){
+	if utils.CompareIp(begain, end) {
+		rangeIp.RangeStart = begain
+		rangeIp.RangeEnd = end
+	}
 }
 func (rangeIp *Range)SetSubnet(subnet string){
 	ipv4Net, err := types.ParseCIDR(subnet)
@@ -51,3 +54,4 @@ func (rangeIp *Range)SetSubnet(subnet string){
 func (rangeIp *Range)SetGateway(gateway string){
 	rangeIp.Gateway = net.ParseIP(gateway)
 }
+
