@@ -22,7 +22,7 @@ func main() {
 	var origIp = "188.188.0.1"
 	var cidr = "188.188.0.1/16"
 	startIp, err := utils.OffsetIPRange(1, net.ParseIP(origIp), cidr)
-	endIp, err := utils.OffsetIPRange(6, startIp, cidr)
+	endIp, err := utils.OffsetIPRange(5, startIp, cidr)
 	hostlocal.Ipam.SetIpRanges(startIp, endIp)
 	hostlocal.Ipam.SetSubnet("188.188.0.1/16")
 	hostlocal.Ipam.SetGateway("188.188.0.1")

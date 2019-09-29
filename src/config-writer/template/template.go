@@ -1,4 +1,0 @@
-package template
-
-import "os"
-
