@@ -4,9 +4,16 @@ import (
 	"fmt"
 	"github.com/containernetworking/cni/pkg/types"
 	"net"
-	"config-writer/utils"
+	"io/ioutil"
+	"strings"
+	"strconv"
+	"os"
 )
-
+// 读取 虚拟网卡个数
+type VFInfo struct {
+	Count  int
+	Master string
+}
 type HostLocal struct {
 	Name   string `json:"name"`
 	Type   string `json:"type"`
@@ -37,7 +44,7 @@ func (r *Route) String() string {
 }
 
 func (rangeIp *Range) SetIpRanges(begain , end net.IP){
-	if utils.CompareIp(begain, end) {
+	if CompareIp(begain, end) {
 		rangeIp.RangeStart = begain
 		rangeIp.RangeEnd = end
 	}
@@ -51,7 +58,50 @@ func (rangeIp *Range)SetSubnet(subnet string){
 	rangeIp.Subnet.Mask = ipv4Net.Mask
 }
 
-func (rangeIp *Range)SetGateway(gateway string){
-	rangeIp.Gateway = net.ParseIP(gateway)
+func (rangeIp *Range)SetGateway(subnet string){
+	ipv4Net, err := types.ParseCIDR(subnet)
+	if err != nil{
+		ipv4Net = nil
+	}
+	rangeIp.Gateway = ipv4Net.IP
+}
+func CompareIp(startIp, endIp net.IP) bool{
+	startIPArry := strings.Split(startIp.String(),".")
+	endIPArry := strings.Split(endIp.String(),".")
+	startIPNum := make([]int64,0,0)
+	endIPNum := make([]int64,0,0)
+	for index, _ := range startIPArry  {
+		tempStart, _ := strconv.ParseInt(startIPArry[index],10,64)
+		tempEnd, _ := strconv.ParseInt(endIPArry[index],10,64)
+		startIPNum = append(startIPNum, tempStart)
+		endIPNum = append(endIPNum, tempEnd)
+	}
+
+	startIPNumTotal := startIPNum[0] * 256 * 256 * 256 + startIPNum[1] * 256 * 256 + startIPNum[2] * 256 + startIPNum[3];
+	endIPNumTotal := endIPNum[0] * 256 * 256 * 256 + endIPNum[1] * 256 * 256 + endIPNum[2] * 256 + endIPNum[3];
+
+	return startIPNumTotal < endIPNumTotal
+}
+
+func (vf *VFInfo) ReadVFNum() (int, error) {
+	//sriovFile := fmt.Sprintf("/sys/class/net/%s/device/sriov_numvfs", vf.master)
+	sriovFile := fmt.Sprintf("D:/temp1/%s/allocate", vf.Master)
+	if _, err := os.Lstat(sriovFile); err != nil {
+		return -1, fmt.Errorf("failed to open the sriov_numfs of device %q: %v", vf.Master, err)
+	}
+	data, err := ioutil.ReadFile(sriovFile)
+	if err != nil {
+		return -1, fmt.Errorf("failed to read the sriov_numfs of device %q: %v", vf.Master, err)
+	}
+
+	if len(data) == 0 {
+		return -1, fmt.Errorf("no data in the file %q", sriovFile)
+	}
+	sriovNumfs := strings.TrimSpace(string(data))
+	vfTotal, err := strconv.Atoi(sriovNumfs)
+	if err != nil {
+		return -1, fmt.Errorf("format num failed %v", err)
+	}
+	return vfTotal, nil
 }
 

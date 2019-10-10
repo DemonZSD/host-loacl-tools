@@ -27,7 +27,7 @@ type IPAllocate struct {
 	Subnet string
 }
 type EtcdConfig struct {
-	EtcdAddr []string
+	EtcdAddr string
 }
 
 var Appcfg *AppConfig
