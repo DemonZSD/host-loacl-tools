@@ -52,8 +52,8 @@ func initLogger() (*logrus.Logger, error) {
 	if err != nil {
 		return nil, err
 	}
-	log := logrus.New()
-	log.AddHook(lfshook.NewHook(
+	logging := logrus.New()
+	logging.AddHook(lfshook.NewHook(
 		lfshook.WriterMap{
 			logrus.DebugLevel: writer,
 			logrus.InfoLevel:  writer,
@@ -63,7 +63,7 @@ func initLogger() (*logrus.Logger, error) {
 		},
 		&logrus.TextFormatter{},
 	))
-	return log, nil
+	return logging, nil
 }
 
 func GetLog() *logrus.Logger{

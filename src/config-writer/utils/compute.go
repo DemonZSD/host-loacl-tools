@@ -23,17 +23,18 @@ func incrementIP(ip net.IP, cidr string) (net.IP, error) {
 }
 
 
-func OffsetIPRange(offset int, endIPV4 net.IP, cidr string)(net.IP, error){
+func OffsetIPRange(offset int, initIp net.IP, cidr string)(ip net.IP, err error){
 	if offset <= 0 {
-		return endIPV4,nil
+		return initIp,nil
 	}
-
+	ip = make([]byte, len(initIp))
+	copy(ip, initIp)
 	for i:=0; i< offset; i++ {
-		tempIPV4,err := incrementIP(endIPV4, cidr)
+		tempIPV4, err := incrementIP(ip, cidr)
 		if err != nil {
 			break;
 		}
-		endIPV4 = tempIPV4
+		ip = tempIPV4
 	}
-	return endIPV4, nil
+	return ip, nil
 }
