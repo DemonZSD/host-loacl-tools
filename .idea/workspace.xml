@@ -2,17 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="9caae739-e8da-4a89-baff-538fa8a55f17" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pkg/windows_amd64/config-writer/config.a" beforeDir="false" afterPath="$PROJECT_DIR$/pkg/windows_amd64/config-writer/config.a" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pkg/windows_amd64/config-writer/etcd.a" beforeDir="false" afterPath="$PROJECT_DIR$/pkg/windows_amd64/config-writer/etcd.a" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pkg/windows_amd64/config-writer/log.a" beforeDir="false" afterPath="$PROJECT_DIR$/pkg/windows_amd64/config-writer/log.a" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pkg/windows_amd64/config-writer/utils.a" beforeDir="false" afterPath="$PROJECT_DIR$/pkg/windows_amd64/config-writer/utils.a" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/config-writer/config/app.ini" beforeDir="false" afterPath="$PROJECT_DIR$/src/config-writer/resource/app.ini" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/config-writer/config/config.go" beforeDir="false" afterPath="$PROJECT_DIR$/src/config-writer/config/config.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/config-writer/log/logger.go" beforeDir="false" afterPath="$PROJECT_DIR$/src/config-writer/log/logger.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/config-writer/main/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/src/config-writer/main.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/config-writer/template/host-local.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/config-writer/resource/host-local-template.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/config-writer/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/src/config-writer/main.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/github.com/containernetworking/cni" beforeDir="false" afterPath="$PROJECT_DIR$/src/github.com/containernetworking/cni" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -49,7 +39,7 @@
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="go" value="5971" />
+          <entry key="go" value="6034" />
           <entry key="ini" value="199" />
           <entry key="json" value="32" />
           <entry key="md" value="445" />
@@ -58,7 +48,7 @@
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="Go" value="5971" />
+          <entry key="Go" value="6034" />
           <entry key="JSON" value="32" />
           <entry key="PLAIN_TEXT" value="741" />
         </counts>
@@ -70,8 +60,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/config-writer/main.go">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="375">
-              <caret line="39" column="47" lean-forward="true" selection-start-line="39" selection-start-column="47" selection-end-line="39" selection-end-column="47" />
+            <state relative-caret-position="300">
+              <caret line="73" column="31" lean-forward="true" selection-start-line="73" selection-start-column="31" selection-end-line="73" selection-end-column="31" />
             </state>
           </provider>
         </entry>
@@ -569,8 +559,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/config-writer/main.go">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="375">
-          <caret line="39" column="47" lean-forward="true" selection-start-line="39" selection-start-column="47" selection-end-line="39" selection-end-column="47" />
+        <state relative-caret-position="300">
+          <caret line="73" column="31" lean-forward="true" selection-start-line="73" selection-start-column="31" selection-end-line="73" selection-end-column="31" />
         </state>
       </provider>
     </entry>

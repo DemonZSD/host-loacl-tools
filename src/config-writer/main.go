@@ -12,9 +12,11 @@ import (
 	"config-writer/etcd"
 	"strings"
 	"net"
+	"flag"
 )
 var logger *logrus.Logger
 const hasAllocate = "/lock/allocated/ipam"
+var version = "1.0.0"
 func init() {
 	logger = inilog.GetLog()
 	//var cfg = config.Appcfg
@@ -29,7 +31,22 @@ func init() {
 	//}
 	//allocateMutex.DeleteKey(allocateMutex.Key)
 }
+
+
+func printVersionString() string {
+	return fmt.Sprintf("host-local-tools version:%s", version)
+}
 func main() {
+
+	versionOpt := false
+	flag.BoolVar(&versionOpt, "version", false, "Show application version")
+	flag.BoolVar(&versionOpt, "v", false, "Show application version")
+	flag.Parse()
+	if versionOpt == true {
+		fmt.Printf("%s\n", printVersionString())
+		return
+	}
+
 	var lockKey = "/lock/allocate/ipam"
 	var cfg = config.Appcfg
 	vfInfo := &types.VFInfo{
@@ -54,7 +71,7 @@ func main() {
 	//go DoTask(lockKey, vfNum, initHostLocal, AllocateIp)
 	//go DoTask(lockKey, vfNum, initHostLocal, AllocateIp)
 	DoTask(lockKey, vfNum, initHostLocal, AllocateIp)
-	time.Sleep(20 * time.Second)
+	time.Sleep(1 * time.Second)
 }
 
 func AllocateIp(hostlocal *types.HostLocal) error{
