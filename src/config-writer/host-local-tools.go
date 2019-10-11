@@ -53,18 +53,22 @@ func main() {
 		Count: 0,
 		Master: cfg.VFName,
 	}
+	logger.Infoln(vfInfo.Master)
 	path1 := "resource/host-local-template.json"
 	initHostLocal, err := utils.ReadJsonFile(path1)
 	if err != nil {
 		logger.Infoln(fmt.Sprintf("read template failed: %v", err))
 	}
-	vfNum, err := vfInfo.ReadVFNum()
 
-	if err != nil {
-		logger.Errorln(fmt.Sprintf("read vf file failed：%v", err))
-		return
-	}
-	//go DoTask(lockKey, vfNum, initHostLocal, AllocateIp)
+	// TODO  vfNum should be read from file
+	vfNum := 64
+	//vfNum, err := vfInfo.ReadVFNum()
+	//
+	//if err != nil {
+	//	logger.Errorln(fmt.Sprintf("read vf file failed：%v", err))
+	//	return
+	//}
+
 	DoTask(lockKey, vfNum, initHostLocal, AllocateIp)
 	time.Sleep(1 * time.Second)
 }
@@ -122,7 +126,7 @@ func DoTask(localKey string, vfNum int, hostlocal *types.HostLocal, allocateIP f
 	if err != nil {
 		logger.Errorln(fmt.Sprintf("offset ip range failed: %v", err))
 	}
-	endIp, err := utils.OffsetIPRange(vfNum, startIp, cfg.Subnet)
+	endIp, err := utils.OffsetIPRange(vfNum-1, startIp, cfg.Subnet)
 	if err != nil {
 		logger.Errorln(fmt.Sprintf("offset ip range failed: %v", err))
 	}

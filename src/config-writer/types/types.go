@@ -91,8 +91,8 @@ func GetInitIpFromSubset(subset string) ( string, error) {
 }
 
 func (vf *VFInfo) ReadVFNum() (int, error) {
-	//sriovFile := fmt.Sprintf("/sys/class/net/%s/device/sriov_numvfs", vf.master)
-	sriovFile := fmt.Sprintf("D:/temp1/%s/allocate", vf.Master)
+	//sriovFile := fmt.Sprintf("/sys/class/net/%s/device/sriov_numvfs", vf.Master)
+	sriovFile := fmt.Sprintf("/opt/%s/allocate", vf.Master)
 	if _, err := os.Lstat(sriovFile); err != nil {
 		return -1, fmt.Errorf("failed to open the sriov_numfs of device %q: %v", vf.Master, err)
 	}

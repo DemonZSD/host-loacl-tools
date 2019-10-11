@@ -65,8 +65,10 @@ spec:
           mountPath: /var/log
         - name: appini
           mountPath: $GOPATH/host-local-tools/resource/app.ini
+          subPath: app.ini
         - name: template-json
-            mountPath: $GOPATH/host-local-tools/resource/host-local-template.json
+          mountPath: $GOPATH/host-local-tools/resource/host-local-template.json
+          subPath: host-local-template.json
       nodeSelector:
         rdma: support
       volumes:
@@ -76,6 +78,12 @@ spec:
       - name: appini
         configMap:
           name: host-local-tools-ini
+          items:
+          - key: app.ini
+            path: app.ini
       - name: template-json
         configMap:
           name: host-local-template-json
+          items:
+          - key: host-local-template.json
+            path: host-local-template.json
