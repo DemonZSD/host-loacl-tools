@@ -22,6 +22,9 @@ type LogConfig struct {
 }
 type VFConfig struct {
 	VFName string
+	Name string
+	Type string
+	Mode string
 }
 type IPAllocate struct {
 	Subnet string
@@ -33,7 +36,7 @@ type EtcdConfig struct {
 var Appcfg *AppConfig
 
 func init() {
-	configPath := "src/config-writer/config/app.ini"
+	configPath := "resource/app.ini"
 	config, err := ReadConfig(configPath)
 	if err != nil {
 		return

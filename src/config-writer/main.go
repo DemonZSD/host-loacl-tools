@@ -31,11 +31,12 @@ func init() {
 }
 func main() {
 	var lockKey = "/lock/allocate/ipam"
+	var cfg = config.Appcfg
 	vfInfo := &types.VFInfo{
 		Count: 0,
-		Master: "enp24s0",
+		Master: cfg.VFName,
 	}
-	path1 := "src/config-writer/template/host-local.json"
+	path1 := "resource/host-local-template.json"
 	initHostLocal, err := utils.ReadJsonFile(path1)
 	if err != nil {
 		logger.Infoln(fmt.Sprintf("read template failed: %v", err))
@@ -44,14 +45,15 @@ func main() {
 
 	if err != nil {
 		logger.Errorln(fmt.Sprintf("read vf file failed：%v", err))
+		return
 	}
-	go DoTask(lockKey, vfNum, initHostLocal, AllocateIp)
-	go DoTask(lockKey, vfNum, initHostLocal, AllocateIp)
-	go DoTask(lockKey, vfNum, initHostLocal, AllocateIp)
-	go DoTask(lockKey, vfNum, initHostLocal, AllocateIp)
-	go DoTask(lockKey, vfNum, initHostLocal, AllocateIp)
-	go DoTask(lockKey, vfNum, initHostLocal, AllocateIp)
-	//DoTask(lockKey, vfNum, initHostLocal, AllocateIp)
+	//go DoTask(lockKey, vfNum, initHostLocal, AllocateIp)
+	//go DoTask(lockKey, vfNum, initHostLocal, AllocateIp)
+	//go DoTask(lockKey, vfNum, initHostLocal, AllocateIp)
+	//go DoTask(lockKey, vfNum, initHostLocal, AllocateIp)
+	//go DoTask(lockKey, vfNum, initHostLocal, AllocateIp)
+	//go DoTask(lockKey, vfNum, initHostLocal, AllocateIp)
+	DoTask(lockKey, vfNum, initHostLocal, AllocateIp)
 	time.Sleep(20 * time.Second)
 }
 
@@ -59,10 +61,10 @@ func AllocateIp(hostlocal *types.HostLocal) error{
 	var cfg = config.Appcfg
 	hostlocal.Ipam.SetSubnet(cfg.Subnet)
 	hostlocal.Ipam.SetGateway(cfg.Subnet)
-	hostlocal.Master="enp24s0"
-	hostlocal.Name="sriov-cnf"
-	hostlocal.Type="sriov"
-	hostlocal.Mode = "bridge"
+	hostlocal.Master=cfg.VFName
+	hostlocal.Name=cfg.Name
+	hostlocal.Type=cfg.Type
+	hostlocal.Mode = cfg.Mode
 	return utils.WriteJsonToFile(cfg.SavePath, hostlocal)
 }
 

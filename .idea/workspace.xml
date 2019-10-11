@@ -3,12 +3,16 @@
   <component name="ChangeListManager">
     <list default="true" id="9caae739-e8da-4a89-baff-538fa8a55f17" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pkg/windows_amd64/config-writer/config.a" beforeDir="false" afterPath="$PROJECT_DIR$/pkg/windows_amd64/config-writer/config.a" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pkg/windows_amd64/config-writer/etcd.a" beforeDir="false" afterPath="$PROJECT_DIR$/pkg/windows_amd64/config-writer/etcd.a" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pkg/windows_amd64/config-writer/types.a" beforeDir="false" afterPath="$PROJECT_DIR$/pkg/windows_amd64/config-writer/types.a" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pkg/windows_amd64/config-writer/log.a" beforeDir="false" afterPath="$PROJECT_DIR$/pkg/windows_amd64/config-writer/log.a" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pkg/windows_amd64/config-writer/utils.a" beforeDir="false" afterPath="$PROJECT_DIR$/pkg/windows_amd64/config-writer/utils.a" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/config-writer/etcd/etcd.go" beforeDir="false" afterPath="$PROJECT_DIR$/src/config-writer/etcd/etcd.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/config-writer/main/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/src/config-writer/main/main.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/config-writer/types/types.go" beforeDir="false" afterPath="$PROJECT_DIR$/src/config-writer/types/types.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/config-writer/config/app.ini" beforeDir="false" afterPath="$PROJECT_DIR$/src/config-writer/resource/app.ini" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/config-writer/config/config.go" beforeDir="false" afterPath="$PROJECT_DIR$/src/config-writer/config/config.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/config-writer/log/logger.go" beforeDir="false" afterPath="$PROJECT_DIR$/src/config-writer/log/logger.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/config-writer/main/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/src/config-writer/main.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/config-writer/template/host-local.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/config-writer/resource/host-local-template.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/github.com/containernetworking/cni" beforeDir="false" afterPath="$PROJECT_DIR$/src/github.com/containernetworking/cni" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -30,23 +34,23 @@
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
         <counts>
-          <entry key="go" value="88" />
+          <entry key="go" value="96" />
           <entry key="ini" value="2" />
-          <entry key="json" value="5" />
+          <entry key="json" value="6" />
           <entry key="md" value="1" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
-          <entry key="Go" value="88" />
-          <entry key="JSON" value="5" />
+          <entry key="Go" value="96" />
+          <entry key="JSON" value="6" />
           <entry key="PLAIN_TEXT" value="3" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="go" value="5885" />
-          <entry key="ini" value="149" />
+          <entry key="go" value="5971" />
+          <entry key="ini" value="199" />
           <entry key="json" value="32" />
           <entry key="md" value="445" />
           <entry key="txt" value="97" />
@@ -54,83 +58,20 @@
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="Go" value="5885" />
+          <entry key="Go" value="5971" />
           <entry key="JSON" value="32" />
-          <entry key="PLAIN_TEXT" value="691" />
+          <entry key="PLAIN_TEXT" value="741" />
         </counts>
       </usages-collector>
     </session>
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/config-writer/config/app.ini">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="250">
-              <caret line="10" column="29" selection-start-line="10" selection-start-column="29" selection-end-line="10" selection-end-column="29" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/config-writer/main/main.go">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="255">
-              <caret line="58" column="27" lean-forward="true" selection-start-line="58" selection-start-column="27" selection-end-line="58" selection-end-column="27" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/config-writer/log/logger.go">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="605">
-              <caret line="52" column="23" selection-start-line="52" selection-start-column="23" selection-end-line="52" selection-end-column="23" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/config-writer/types/types.go">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="775">
-              <caret line="72" column="36" selection-start-line="72" selection-start-column="36" selection-end-line="72" selection-end-column="36" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/config-writer/utils/compute.go">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="775">
-              <caret line="34" column="18" selection-start-line="34" selection-start-column="18" selection-end-line="34" selection-end-column="18" />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/config-writer/etcd/etcd.go">
+        <entry file="file://$PROJECT_DIR$/src/config-writer/main.go">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="449">
-              <caret line="70" column="45" selection-start-line="70" selection-start-column="45" selection-end-line="70" selection-end-column="45" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/go.etcd.io/etcd/clientv3/op.go">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="6675">
-              <caret line="267" column="24" selection-start-line="267" selection-start-column="24" selection-end-line="267" selection-end-column="24" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/go.etcd.io/etcd/clientv3/kv.go">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1025">
-              <caret line="47" column="6" selection-start-line="47" selection-start-column="6" selection-end-line="47" selection-end-column="6" />
+            <state relative-caret-position="375">
+              <caret line="39" column="47" lean-forward="true" selection-start-line="39" selection-start-column="47" selection-end-line="39" selection-end-column="47" />
             </state>
           </provider>
         </entry>
@@ -148,6 +89,8 @@
     <findStrings>
       <find>parse data failed</find>
       <find>释放了锁</find>
+      <find>enp24s0</find>
+      <find>read vf file failed</find>
     </findStrings>
   </component>
   <component name="GOROOT" path="C:\Go" />
@@ -173,13 +116,14 @@
         <option value="$PROJECT_DIR$/src/config-writer/utils/allocate_ip.go" />
         <option value="$PROJECT_DIR$/src/config-writer/utils/file.go" />
         <option value="$PROJECT_DIR$/src/config-writer/main/allocate_ip.go" />
-        <option value="$PROJECT_DIR$/src/config-writer/config/config.go" />
-        <option value="$PROJECT_DIR$/src/config-writer/config/app.ini" />
         <option value="$PROJECT_DIR$/src/config-writer/utils/compute.go" />
-        <option value="$PROJECT_DIR$/src/config-writer/log/logger.go" />
         <option value="$PROJECT_DIR$/src/config-writer/types/types.go" />
-        <option value="$PROJECT_DIR$/src/config-writer/main/main.go" />
         <option value="$PROJECT_DIR$/src/config-writer/etcd/etcd.go" />
+        <option value="$PROJECT_DIR$/src/config-writer/config/app.ini" />
+        <option value="$PROJECT_DIR$/src/config-writer/log/logger.go" />
+        <option value="$PROJECT_DIR$/src/config-writer/main/main.go" />
+        <option value="$PROJECT_DIR$/src/config-writer/config/config.go" />
+        <option value="$PROJECT_DIR$/src/config-writer/main.go" />
       </list>
     </option>
   </component>
@@ -218,8 +162,20 @@
             <path>
               <item name="host-loacl-tools" type="b2602c69:ProjectViewProjectNode" />
               <item name="host-loacl-tools" type="462c0819:PsiDirectoryNode" />
-              <item name="pkg" type="462c0819:PsiDirectoryNode" />
-              <item name="windows_amd64" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="host-loacl-tools" type="b2602c69:ProjectViewProjectNode" />
+              <item name="host-loacl-tools" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="config-writer" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="host-loacl-tools" type="b2602c69:ProjectViewProjectNode" />
+              <item name="host-loacl-tools" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="config-writer" type="462c0819:PsiDirectoryNode" />
+              <item name="resource" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -243,11 +199,11 @@
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\d_workspace\host-loacl-tools\src\config-writer" />
+      <recent name="D:\d_workspace\host-loacl-tools\src\config-writer\resource" />
       <recent name="D:\d_workspace\host-loacl-tools\src\config-writer\utils" />
       <recent name="D:\d_workspace\host-loacl-tools\src\config-writer\etcd" />
       <recent name="D:\d_workspace\host-loacl-tools\src\config-writer\main" />
-      <recent name="E:\workspace\host-local-tools\src\config-writer\config" />
-      <recent name="E:\workspace\host-local-tools\src\config-writer\type" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -262,13 +218,22 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Go Build.go build main.go">
+  <component name="RunManager" selected="Go Build.go build main.go (1)">
     <configuration name="go build config-writer/main" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true" nameIsGenerated="true">
       <module name="host-local-tools" />
       <working_directory value="$PROJECT_DIR$/" />
       <kind value="PACKAGE" />
       <filePath value="$PROJECT_DIR$/src/config-writer/main/main.go" />
       <package value="config-writer/main" />
+      <method v="2" />
+    </configuration>
+    <configuration name="go build main.go (1)" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true" nameIsGenerated="true">
+      <module name="host-local-tools" />
+      <working_directory value="$PROJECT_DIR$/" />
+      <go_parameters value="-i" />
+      <kind value="FILE" />
+      <filePath value="$PROJECT_DIR$/src/config-writer/main.go" />
+      <directory value="$PROJECT_DIR$/" />
       <method v="2" />
     </configuration>
     <configuration name="go build main.go" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true" nameIsGenerated="true">
@@ -283,9 +248,11 @@
     <list>
       <item itemvalue="Go Build.go build config-writer/main" />
       <item itemvalue="Go Build.go build main.go" />
+      <item itemvalue="Go Build.go build main.go (1)" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Go Build.go build main.go (1)" />
         <item itemvalue="Go Build.go build main.go" />
         <item itemvalue="Go Build.go build config-writer/main" />
       </list>
@@ -299,7 +266,7 @@
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
-      <window_info anchor="bottom" id="Find" order="1" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.32957748" />
       <window_info anchor="bottom" id="Run" order="2" weight="0.7112676" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.49859154" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
@@ -441,13 +408,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/config-writer/template/host-local.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="1" lean-forward="true" selection-start-column="1" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/config-writer/template/template.go" />
     <entry file="file://$PROJECT_DIR$/src/go.etcd.io/etcd/clientv3/txn.go">
       <provider selected="true" editor-type-id="text-editor">
@@ -478,13 +438,6 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/config-writer/main/allocate_ip.go" />
-    <entry file="file://$PROJECT_DIR$/src/config-writer/config/config.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="123">
-          <caret line="29" column="13" selection-start-line="29" selection-start-column="13" selection-end-line="29" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/go.etcd.io/etcd/tools/benchmark/cmd/lease.go">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="196">
@@ -548,13 +501,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/config-writer/config/app.ini">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="250">
-          <caret line="10" column="29" selection-start-line="10" selection-start-column="29" selection-end-line="10" selection-end-column="29" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/config-writer/utils/compute.go">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="775">
@@ -576,13 +522,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/config-writer/log/logger.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="605">
-          <caret line="52" column="23" selection-start-line="52" selection-start-column="23" selection-end-line="52" selection-end-column="23" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/config-writer/types/types.go">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="775">
@@ -590,17 +529,48 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/config-writer/main/main.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="58" column="27" lean-forward="true" selection-start-line="58" selection-start-column="27" selection-end-line="58" selection-end-column="27" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/config-writer/etcd/etcd.go">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="449">
           <caret line="70" column="45" selection-start-line="70" selection-start-column="45" selection-end-line="70" selection-end-column="45" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/config-writer/resource/host-local-template.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="75">
+          <caret line="3" column="10" selection-start-line="3" selection-start-column="10" selection-end-line="3" selection-end-column="10" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/config-writer/log/logger.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="346">
+          <caret line="40" column="28" selection-start-line="40" selection-start-column="28" selection-end-line="40" selection-end-column="28" />
+          <folding>
+            <element signature="e#620#785#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/config-writer/resource/app.ini">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="296">
+          <caret line="13" column="29" selection-start-line="13" selection-start-column="29" selection-end-line="13" selection-end-column="29" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/config-writer/config/config.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="175">
+          <caret line="38" column="19" selection-start-line="38" selection-start-column="19" selection-end-line="38" selection-end-column="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/config-writer/main.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="375">
+          <caret line="39" column="47" lean-forward="true" selection-start-line="39" selection-start-column="47" selection-end-line="39" selection-end-column="47" />
         </state>
       </provider>
     </entry>

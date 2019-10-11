@@ -37,7 +37,8 @@ func init() {
 }
 
 func initLogger() (*logrus.Logger, error) {
-	var logDir = config.Appcfg.LogPath
+	var cfg = config.Appcfg
+	var logDir = cfg.LogPath
 	if _, err := os.Stat(logDir); err != nil {
 		err := os.Mkdir(logDir, os.ModePerm)
 		if err != nil {
