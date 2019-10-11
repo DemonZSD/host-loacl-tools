@@ -24,6 +24,7 @@ import (
 	"time"
 	"log"
 	"fmt"
+	"github.com/pkg/errors"
 )
 
 var logger *logrus.Logger
@@ -38,6 +39,9 @@ func init() {
 
 func initLogger() (*logrus.Logger, error) {
 	var cfg = config.Appcfg
+	if cfg == nil {
+		return nil, errors.New("get config error")
+	}
 	var logDir = cfg.LogPath
 	if _, err := os.Stat(logDir); err != nil {
 		err := os.Mkdir(logDir, os.ModePerm)

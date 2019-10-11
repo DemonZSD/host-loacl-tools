@@ -13,6 +13,7 @@ import (
 	"strings"
 	"net"
 	"flag"
+	"github.com/pkg/errors"
 )
 var logger *logrus.Logger
 const hasAllocate = "/lock/allocated/ipam"
@@ -49,11 +50,14 @@ func main() {
 
 	var lockKey = "/lock/allocate/ipam"
 	var cfg = config.Appcfg
+	if cfg == nil {
+		return
+	}
 	vfInfo := &types.VFInfo{
 		Count: 0,
 		Master: cfg.VFName,
 	}
-	logger.Infoln(vfInfo.Master)
+	logger.Infoln(fmt.Sprintf("the master PF name is %s", vfInfo.Master))
 	path1 := "resource/host-local-template.json"
 	initHostLocal, err := utils.ReadJsonFile(path1)
 	if err != nil {
@@ -75,6 +79,9 @@ func main() {
 
 func AllocateIp(hostlocal *types.HostLocal) error{
 	var cfg = config.Appcfg
+	if cfg == nil {
+		return errors.New("init app.ini failed")
+	}
 	hostlocal.Ipam.SetSubnet(cfg.Subnet)
 	hostlocal.Ipam.SetGateway(cfg.Subnet)
 	hostlocal.Master=cfg.VFName
@@ -86,7 +93,9 @@ func AllocateIp(hostlocal *types.HostLocal) error{
 
 func DoTask(localKey string, vfNum int, hostlocal *types.HostLocal, allocateIP func(*types.HostLocal) error){
 	var cfg = config.Appcfg
-
+	if cfg == nil {
+		return
+	}
 	var conf = clientv3.Config{
 		Endpoints:   strings.Split(cfg.EtcdAddr, " "),
 		DialTimeout: 5 * time.Second,
@@ -99,7 +108,7 @@ func DoTask(localKey string, vfNum int, hostlocal *types.HostLocal, allocateIP f
 	for {
 		err := allocateMutex.Lock()
 		if err != nil{
-			logger.Errorln(fmt.Sprintf("get lock failed: %v", err))
+			logger.Errorln(fmt.Sprintf("get lock failed: %v, and try again.", err))
 			time.Sleep(1 * time.Second)
 		}else{
 			logger.Infoln("get lock success")
@@ -125,13 +134,19 @@ func DoTask(localKey string, vfNum int, hostlocal *types.HostLocal, allocateIP f
 	startIp, err := utils.OffsetIPRange(1, net.ParseIP(originIp), cfg.Subnet)
 	if err != nil {
 		logger.Errorln(fmt.Sprintf("offset ip range failed: %v", err))
+		return
 	}
 	endIp, err := utils.OffsetIPRange(vfNum-1, startIp, cfg.Subnet)
 	if err != nil {
 		logger.Errorln(fmt.Sprintf("offset ip range failed: %v", err))
+		return
 	}
 	hostlocal.Ipam.SetIpRanges(startIp, endIp)
-	allocateIP(hostlocal)
+	err = allocateIP(hostlocal)
+	if err != nil {
+		logger.Errorln(fmt.Sprintf("allocateIP failed: %v", err))
+		return
+	}
 	if err := allocateMutex.Update(hasAllocate, endIp.String()); err != nil{
 		logger.Errorln(fmt.Sprintf("set value failed: %v", err))
 		return
