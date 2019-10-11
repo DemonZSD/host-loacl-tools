@@ -39,6 +39,7 @@ func init() {
 	configPath := "resource/app.ini"
 	config, err := ReadConfig(configPath)
 	if err != nil {
+		fmt.Printf("init app.ini config failed: %v", err)
 		return
 	}
 	Appcfg = config

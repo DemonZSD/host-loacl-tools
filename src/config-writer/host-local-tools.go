@@ -65,11 +65,6 @@ func main() {
 		return
 	}
 	//go DoTask(lockKey, vfNum, initHostLocal, AllocateIp)
-	//go DoTask(lockKey, vfNum, initHostLocal, AllocateIp)
-	//go DoTask(lockKey, vfNum, initHostLocal, AllocateIp)
-	//go DoTask(lockKey, vfNum, initHostLocal, AllocateIp)
-	//go DoTask(lockKey, vfNum, initHostLocal, AllocateIp)
-	//go DoTask(lockKey, vfNum, initHostLocal, AllocateIp)
 	DoTask(lockKey, vfNum, initHostLocal, AllocateIp)
 	time.Sleep(1 * time.Second)
 }

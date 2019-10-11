@@ -1,0 +1,81 @@
+appVersion: apps/v1
+kind: ConfigMap
+metadata:
+  name: host-local-tools-ini
+  namespace: kube-system
+data:
+  app.ini: |-
+    [PathConfig]
+    SavePath = D:/temp1/aaa.conf
+    [VFConfig]
+    VFName = ifs0     # master name
+    Name = sriov-cnf
+    Type = sriov
+    Mode = bridge
+    [IPAllocate]
+    Subnet = 188.188.0.1/16
+    [EtcdConfig]
+    EtcdAddr = 192.168.0.157:2379
+    [LogConfig]
+    LogPath = "D:/temp1/log"
+---
+appVersion: apps/v1
+kind: ConfigMap
+metadata:
+  name: host-local-template-json
+  namespace: kube-system
+data:
+  host-local-template.json: |-
+    {
+      "name": "mynet",
+      "type": "ipvlan",
+      "if0": "enp24s0",
+      "mode": "bridge",
+      "ipam": {
+        "type": "host-local",
+        "subnet": "10.10.0.0/16",
+        "rangeStart": "10.10.1.20",
+        "rangeEnd": "10.10.3.50",
+        "gateway": "10.10.0.254",
+        "routes": [
+          { "dst": "0.0.0.0/0" }
+        ]
+      }
+    }
+---
+apiVersion: apps/v1
+kind: DaemonSet
+metadata:
+  name: host-local-tools
+  namespace: kube-system
+spec:
+  selector:
+    matchLabels:
+      name: host-local-tools
+  template:
+    metadata:
+      labels:
+        name: host-local-tools
+    spec:
+      containers:
+      - name: host-local-tools
+        image: host-local-tools
+        volumeMounts:
+        - name: varlog
+          mountPath: /var/log
+        - name: appini
+          mountPath: $GOPATH/host-local-tools/resource/app.ini
+        - name: template-json
+            mountPath: $GOPATH/host-local-tools/resource/host-local-template.json
+      nodeSelector:
+        rdma: support
+      volumes:
+      - name: varlog
+        hostPath:
+          path: /var/log/
+      - name: appini
+        configMap:
+          name: host-local-tools-ini
+      - name: template-json
+        configMap:
+          name: host-local-template-json
