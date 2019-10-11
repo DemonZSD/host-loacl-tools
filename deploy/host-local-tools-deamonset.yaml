@@ -6,7 +6,7 @@ metadata:
 data:
   app.ini: |-
     [PathConfig]
-    SavePath = D:/temp1/aaa.conf
+    SavePath = /opt/aaa.conf
     [VFConfig]
     VFName = ifs0     # master name
     Name = sriov-cnf
@@ -17,7 +17,7 @@ data:
     [EtcdConfig]
     EtcdAddr = 192.168.0.157:2379
     [LogConfig]
-    LogPath = "D:/temp1/log"
+    LogPath = /var/log
 ---
 appVersion: apps/v1
 kind: ConfigMap
@@ -64,13 +64,13 @@ spec:
         - name: varlog
           mountPath: /var/log
         - name: appini
-          mountPath: $GOPATH/host-local-tools/resource/app.ini
-          subPath: app.ini
+          mountPath: /opt/host-local-tools/resource/app.ini
+          subPath: /path/to/app.ini
         - name: template-json
-          mountPath: $GOPATH/host-local-tools/resource/host-local-template.json
-          subPath: host-local-template.json
-      nodeSelector:
-        rdma: support
+          mountPath: /opt/host-local-tools/resource/host-local-template.json
+          subPath: /path/to/host-local-template.json
+#      nodeSelector:
+#        rdma: support
       volumes:
       - name: varlog
         hostPath:
@@ -80,10 +80,10 @@ spec:
           name: host-local-tools-ini
           items:
           - key: app.ini
-            path: app.ini
+            path: /path/to/app.ini
       - name: template-json
         configMap:
           name: host-local-template-json
           items:
           - key: host-local-template.json
-            path: host-local-template.json
+            path: /path/to/host-local-template.json
