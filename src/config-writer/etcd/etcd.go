@@ -54,7 +54,7 @@ func (em * EtcdMutex)init() error {
 	_, err = em.lease.KeepAlive(ctx, em.leaseId)  //自动续租
 	return err
 }
-func(em *EtcdMutex)Lock()error{
+func (em *EtcdMutex) Lock()error{
 	err := em.init()
 	if err != nil{
 		return err
@@ -68,15 +68,62 @@ func(em *EtcdMutex)Lock()error{
 		return err
 	}
 	if !txnResp.Succeeded{   //判断txn.if条件是否成立
-		return errors.New("抢锁失败")
+		return errors.New("it has been locked")
 	}
 	return nil
 }
 
+func (em *EtcdMutex) Update(key ,val string) error {
+	client, err := clientv3.New(em.Conf)
+	if err != nil {
+		logger.Errorln(fmt.Sprintf("init etcd client failed: %v", err))
+		return err
+	}
+	_, err = client.Put(context.TODO() ,key, val)
+	if err != nil {
+		return err
+	}
+	logger.Infoln(fmt.Sprintf("success set [%s:%s]", key, val))
+	return nil
+}
+
+func (em *EtcdMutex) GetValue(key string) (string, error) {
+	client, err := clientv3.New(em.Conf)
+	if err != nil {
+		logger.Errorln(fmt.Sprintf("init etcd client failed: %v", err))
+		return "", err
+	}
+	getResp, err := client.Get(context.TODO() ,key)
+	if err != nil {
+		return "", err
+	}
+	if getResp.Kvs != nil && len(getResp.Kvs) > 0{
+		return string(getResp.Kvs[0].Value[:]), nil
+	}else {
+		return "", nil
+	}
+}
+
+func (em *EtcdMutex) DeleteKey(key string) (error) {
+	client, err := clientv3.New(em.Conf)
+	if err != nil {
+		logger.Errorln(fmt.Sprintf("init etcd client failed: %v", err))
+		return err
+	}
+	_, err = client.Delete(context.TODO() ,key)
+	if err != nil {
+		return err
+	}
+	return nil
+}
+
+
+
+
 func(em *EtcdMutex)UnLock(){
 	em.cancel()
 	em.lease.Revoke(context.TODO(),em.leaseId)
-	fmt.Println("释放了锁")
+	logger.Infoln("release lock success")
 }
 
 

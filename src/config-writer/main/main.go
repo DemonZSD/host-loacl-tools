@@ -14,8 +14,20 @@ import (
 	"net"
 )
 var logger *logrus.Logger
+const hasAllocate = "/lock/allocated/ipam"
 func init() {
 	logger = inilog.GetLog()
+	//var cfg = config.Appcfg
+	//var conf = clientv3.Config{
+	//	Endpoints:   strings.Split(cfg.EtcdAddr, " "),
+	//	DialTimeout: 5 * time.Second,
+	//}
+	//allocateMutex := &etcd.EtcdMutex{
+	//	Conf:conf,
+	//	Ttl:10,
+	//	Key: hasAllocate,
+	//}
+	//allocateMutex.DeleteKey(allocateMutex.Key)
 }
 func main() {
 	var lockKey = "/lock/allocate/ipam"
@@ -33,8 +45,14 @@ func main() {
 	if err != nil {
 		logger.Errorln(fmt.Sprintf("read vf file failed：%v", err))
 	}
-	DoTask(lockKey, vfNum, initHostLocal, AllocateIp)
-	time.Sleep(30 * time.Second)
+	go DoTask(lockKey, vfNum, initHostLocal, AllocateIp)
+	go DoTask(lockKey, vfNum, initHostLocal, AllocateIp)
+	go DoTask(lockKey, vfNum, initHostLocal, AllocateIp)
+	go DoTask(lockKey, vfNum, initHostLocal, AllocateIp)
+	go DoTask(lockKey, vfNum, initHostLocal, AllocateIp)
+	go DoTask(lockKey, vfNum, initHostLocal, AllocateIp)
+	//DoTask(lockKey, vfNum, initHostLocal, AllocateIp)
+	time.Sleep(20 * time.Second)
 }
 
 func AllocateIp(hostlocal *types.HostLocal) error{
@@ -50,6 +68,7 @@ func AllocateIp(hostlocal *types.HostLocal) error{
 
 func DoTask(localKey string, vfNum int, hostlocal *types.HostLocal, allocateIP func(*types.HostLocal) error){
 	var cfg = config.Appcfg
+
 	var conf = clientv3.Config{
 		Endpoints:   strings.Split(cfg.EtcdAddr, " "),
 		DialTimeout: 5 * time.Second,
@@ -63,12 +82,28 @@ func DoTask(localKey string, vfNum int, hostlocal *types.HostLocal, allocateIP f
 		err := allocateMutex.Lock()
 		if err != nil{
 			logger.Errorln(fmt.Sprintf("get lock failed: %v", err))
+			time.Sleep(1 * time.Second)
 		}else{
 			logger.Infoln("get lock success")
 			break
 		}
 	}
-	var originIp = "188.188.0.1"
+
+	originIp, err := allocateMutex.GetValue(hasAllocate)
+	if err != nil{
+		logger.Errorln(fmt.Sprintf("get value failed : %v", err))
+		return
+	}
+	if originIp == "" {
+		if originIp, err = types.GetInitIpFromSubset(cfg.Subnet); err != nil {
+			logger.Errorln(fmt.Sprintf("get init ip from subset failed : %v", err))
+			return
+		}
+		if err := allocateMutex.Update(hasAllocate, originIp); err != nil{
+			logger.Errorln(fmt.Sprintf("set value failed: %v", err))
+			return
+		}
+	}
 	startIp, err := utils.OffsetIPRange(1, net.ParseIP(originIp), cfg.Subnet)
 	if err != nil {
 		logger.Errorln(fmt.Sprintf("offset ip range failed: %v", err))
@@ -79,5 +114,10 @@ func DoTask(localKey string, vfNum int, hostlocal *types.HostLocal, allocateIP f
 	}
 	hostlocal.Ipam.SetIpRanges(startIp, endIp)
 	allocateIP(hostlocal)
+	if err := allocateMutex.Update(hasAllocate, endIp.String()); err != nil{
+		logger.Errorln(fmt.Sprintf("set value failed: %v", err))
+		return
+	}
+	logger.Infoln(fmt.Sprintf("success allocate ip [%s - %s]", startIp, endIp))
 	defer allocateMutex.UnLock()
 }

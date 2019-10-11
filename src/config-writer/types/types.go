@@ -77,10 +77,17 @@ func CompareIp(startIp, endIp net.IP) bool{
 		endIPNum = append(endIPNum, tempEnd)
 	}
 
-	startIPNumTotal := startIPNum[0] * 256 * 256 * 256 + startIPNum[1] * 256 * 256 + startIPNum[2] * 256 + startIPNum[3];
-	endIPNumTotal := endIPNum[0] * 256 * 256 * 256 + endIPNum[1] * 256 * 256 + endIPNum[2] * 256 + endIPNum[3];
-
+	startIPNumTotal := startIPNum[0] * 256 * 256 * 256 + startIPNum[1] * 256 * 256 + startIPNum[2] * 256 + startIPNum[3]
+	endIPNumTotal := endIPNum[0] * 256 * 256 * 256 + endIPNum[1] * 256 * 256 + endIPNum[2] * 256 + endIPNum[3]
 	return startIPNumTotal < endIPNumTotal
+}
+
+func GetInitIpFromSubset(subset string) ( string, error) {
+	ipv4Net, err := types.ParseCIDR(subset)
+	if err != nil{
+		return "", err
+	}
+	return ipv4Net.IP.String(), nil
 }
 
 func (vf *VFInfo) ReadVFNum() (int, error) {
