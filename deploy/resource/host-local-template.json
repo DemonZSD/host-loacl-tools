@@ -1,0 +1,16 @@
+{
+  "name": "mynet",
+  "type": "ipvlan",
+  "if0": "enp24s0",
+  "mode": "bridge",
+  "ipam": {
+    "type": "host-local",
+    "subnet": "10.10.0.0/16",
+    "rangeStart": "10.10.1.20",
+    "rangeEnd": "10.10.3.50",
+    "gateway": "10.10.0.254",
+    "routes": [
+      { "dst": "0.0.0.0/0" }
+    ]
+  }
+}
