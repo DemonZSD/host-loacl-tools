@@ -115,7 +115,7 @@ func DoTask(localKey string, vfNum int, hostlocal *types.HostLocal, allocateIP f
 			break
 		}
 	}
-
+	//time.Sleep(5 * time.Second)
 	originIp, err := allocateMutex.GetValue(hasAllocate)
 	if err != nil{
 		logger.Errorln(fmt.Sprintf("get value failed : %v", err))

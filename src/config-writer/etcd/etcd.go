@@ -63,7 +63,7 @@ func (em *EtcdMutex) Lock()error{
 	em.txn.If(clientv3.Compare(clientv3.CreateRevision(em.Key),"=",0)).
 		Then(clientv3.OpPut(em.Key,"",clientv3.WithLease(em.leaseId))).
 		Else()
-	txnResp,err := em.txn.Commit()
+	txnResp,err := em.txn.Commit()  //提交事务
 	if err != nil{
 		return err
 	}
@@ -95,6 +95,7 @@ func (em *EtcdMutex) GetValue(key string) (string, error) {
 	}
 	getResp, err := client.Get(context.TODO() ,key)
 	if err != nil {
+		logger.Errorln(fmt.Sprintf("delete key %s failed: %v", key, err))
 		return "", err
 	}
 	if getResp.Kvs != nil && len(getResp.Kvs) > 0{
@@ -112,17 +113,15 @@ func (em *EtcdMutex) DeleteKey(key string) (error) {
 	}
 	_, err = client.Delete(context.TODO() ,key)
 	if err != nil {
+		logger.Errorln(fmt.Sprintf("delete key %s failed: %v", key, err))
 		return err
 	}
 	return nil
 }
 
-
-
-
 func(em *EtcdMutex)UnLock(){
-	em.cancel()
-	em.lease.Revoke(context.TODO(),em.leaseId)
+	em.cancel()  //停止续租，终止租约
+	em.lease.Revoke(context.TODO(),em.leaseId)  // 注销lease 租约
 	logger.Infoln("release lock success")
 }
 

@@ -66,11 +66,28 @@ func initLogger() (*logrus.Logger, error) {
 			logrus.ErrorLevel: writer,
 			logrus.PanicLevel: writer,
 		},
-		&logrus.TextFormatter{},
+		&prefixFormatter{},
 	))
+	//logging.WithField("hostname", "111")
 	return logging, nil
 }
+type prefixFormatter struct {
+	logrus.TextFormatter
+}
 
+func (f *prefixFormatter) Format(entry *logrus.Entry) ([]byte, error) {
+	// as an example, we prepend a shamrock to all log messages
+	// but you can do whatever you want here.
+	hostName, err := os.Hostname()
+	if err != nil {
+		hostName = "unknown"
+	}
+	f.TextFormatter.TimestampFormat = "2006-01-02 15:04:05"
+	f.TextFormatter.DisableColors = true
+	f.TextFormatter.FullTimestamp = true
+	originalContent, e := f.TextFormatter.Format(entry)
+	return append([]byte(fmt.Sprintf("hostname: %s, ", hostName)), originalContent...), e
+}
 func GetLog() *logrus.Logger{
 	return logger
 }
