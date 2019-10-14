@@ -2,14 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="9caae739-e8da-4a89-baff-538fa8a55f17" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/deploy/host-local-tools" beforeDir="false" afterPath="$PROJECT_DIR$/deploy/host-local-tools" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pkg/windows_amd64/config-writer/etcd.a" beforeDir="false" afterPath="$PROJECT_DIR$/pkg/windows_amd64/config-writer/etcd.a" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pkg/windows_amd64/config-writer/log.a" beforeDir="false" afterPath="$PROJECT_DIR$/pkg/windows_amd64/config-writer/log.a" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pkg/windows_amd64/config-writer/types.a" beforeDir="false" afterPath="$PROJECT_DIR$/pkg/windows_amd64/config-writer/types.a" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pkg/windows_amd64/config-writer/utils.a" beforeDir="false" afterPath="$PROJECT_DIR$/pkg/windows_amd64/config-writer/utils.a" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/config-writer/resource/app.ini" beforeDir="false" afterPath="$PROJECT_DIR$/resource/app.ini" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/config-writer/resource/host-local-template.json" beforeDir="false" afterPath="$PROJECT_DIR$/resource/host-local-template.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/github.com/containernetworking/cni" beforeDir="false" afterPath="$PROJECT_DIR$/src/github.com/containernetworking/cni" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -220,6 +212,11 @@
             <path>
               <item name="host-loacl-tools" type="b2602c69:ProjectViewProjectNode" />
               <item name="host-loacl-tools" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="host-loacl-tools" type="b2602c69:ProjectViewProjectNode" />
+              <item name="host-loacl-tools" type="462c0819:PsiDirectoryNode" />
+              <item name="deploy" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
