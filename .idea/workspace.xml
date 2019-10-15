@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="9caae739-e8da-4a89-baff-538fa8a55f17" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/deploy/host-local-tools-deamonset.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/deploy/host-local-tools-deamonset.yaml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/github.com/containernetworking/cni" beforeDir="false" afterPath="$PROJECT_DIR$/src/github.com/containernetworking/cni" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -25,6 +26,7 @@
         <counts>
           <entry key="Dockerfile" value="6" />
           <entry key="go" value="134" />
+          <entry key="host-local-tools-configmap" value="1" />
           <entry key="ini" value="7" />
           <entry key="json" value="7" />
           <entry key="md" value="2" />
@@ -39,19 +41,20 @@
           <entry key="JSON" value="7" />
           <entry key="Markdown" value="1" />
           <entry key="PLAIN_TEXT" value="14" />
-          <entry key="YAML" value="3" />
+          <entry key="YAML" value="4" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
           <entry key="Dockerfile" value="366" />
           <entry key="go" value="7146" />
+          <entry key="host-local-tools-configmap" value="2" />
           <entry key="ini" value="217" />
           <entry key="json" value="32" />
           <entry key="md" value="445" />
           <entry key="sh" value="64" />
           <entry key="txt" value="97" />
-          <entry key="yaml" value="806" />
+          <entry key="yaml" value="808" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
@@ -60,18 +63,27 @@
           <entry key="Go" value="7146" />
           <entry key="JSON" value="32" />
           <entry key="PLAIN_TEXT" value="1125" />
-          <entry key="YAML" value="806" />
+          <entry key="YAML" value="810" />
         </counts>
       </usages-collector>
     </session>
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/config-writer/host-local-tools.go">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="175">
               <caret line="111" column="28" selection-start-line="111" selection-start-column="28" selection-end-line="111" selection-end-column="28" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/deploy/host-local-tools-configmap">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="200">
+              <caret line="8" column="23" selection-start-line="8" selection-start-column="20" selection-end-line="8" selection-end-column="23" />
             </state>
           </provider>
         </entry>
@@ -92,18 +104,14 @@
         <entry file="file://$PROJECT_DIR$/src/config-writer/config/config.go">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="905">
-              <caret line="54" column="19" lean-forward="true" selection-start-line="54" selection-start-column="19" selection-end-line="54" selection-end-column="19" />
+              <caret line="54" column="19" selection-start-line="54" selection-start-column="19" selection-end-line="54" selection-end-column="19" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/deploy/host-local-tools-deamonset.yaml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1600">
-              <caret line="64" column="29" selection-start-line="64" selection-start-column="29" selection-end-line="64" selection-end-column="29" />
-            </state>
-          </provider>
+          <provider selected="true" editor-type-id="text-editor" />
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
@@ -173,7 +181,6 @@
         <option value="$PROJECT_DIR$/src/config-writer/config/config.go" />
         <option value="$PROJECT_DIR$/src/config-writer/types/types.go" />
         <option value="$PROJECT_DIR$/Dockerfile" />
-        <option value="$PROJECT_DIR$/deploy/host-local-tools-deamonset.yaml" />
         <option value="$PROJECT_DIR$/build.sh" />
         <option value="$PROJECT_DIR$/deploy/Dockerfile" />
         <option value="$PROJECT_DIR$/README.md" />
@@ -183,6 +190,8 @@
         <option value="$PROJECT_DIR$/src/config-writer/host-local-tools.go" />
         <option value="$PROJECT_DIR$/deploy/resource/app.ini" />
         <option value="$PROJECT_DIR$/src/config-writer/resource/app.ini" />
+        <option value="$PROJECT_DIR$/deploy/host-local-tools-deamonset.yaml" />
+        <option value="$PROJECT_DIR$/deploy/host-local-tools-configmap" />
       </list>
     </option>
   </component>
@@ -316,6 +325,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1616" height="873" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.2159383" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
@@ -323,7 +333,7 @@
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32957748" />
       <window_info anchor="bottom" id="Run" order="2" weight="0.7112676" />
-      <window_info anchor="bottom" id="Debug" order="3" visible="true" weight="0.49859154" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.49859154" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
@@ -699,13 +709,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/deploy/host-local-tools-deamonset.yaml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1600">
-          <caret line="64" column="29" selection-start-line="64" selection-start-column="29" selection-end-line="64" selection-end-column="29" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/deploy/Dockerfile">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="125">
@@ -740,7 +743,7 @@
     <entry file="file://$PROJECT_DIR$/src/config-writer/config/config.go">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="905">
-          <caret line="54" column="19" lean-forward="true" selection-start-line="54" selection-start-column="19" selection-end-line="54" selection-end-column="19" />
+          <caret line="54" column="19" selection-start-line="54" selection-start-column="19" selection-end-line="54" selection-end-column="19" />
         </state>
       </provider>
     </entry>
@@ -755,6 +758,16 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="175">
           <caret line="111" column="28" selection-start-line="111" selection-start-column="28" selection-end-line="111" selection-end-column="28" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/deploy/host-local-tools-deamonset.yaml">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/deploy/host-local-tools-configmap">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="200">
+          <caret line="8" column="23" selection-start-line="8" selection-start-column="20" selection-end-line="8" selection-end-column="23" />
         </state>
       </provider>
     </entry>
