@@ -1,4 +1,4 @@
-apiVersion: apps/v1
+apiVersion: v1
 kind: ConfigMap
 metadata:
   name: host-local-tools
@@ -6,7 +6,7 @@ metadata:
 data:
   app.ini: |
     [PathConfig]
-    SavePath = /opt/aaa.conf
+    SavePath = /opt/cni/09-multus.conf
     [VFConfig]
     VFName = ifs0     # master name
     Name = sriov-cnf
@@ -15,7 +15,7 @@ data:
     [IPAllocate]
     Subnet = 188.188.0.1/16
     [EtcdConfig]
-    EtcdAddr = 192.168.0.157:2379
+    EtcdAddr = 181.31.28.115:2379
     [LogConfig]
     LogPath = /var/log
   host-local-template.json: |
