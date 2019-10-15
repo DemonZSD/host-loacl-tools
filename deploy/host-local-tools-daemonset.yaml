@@ -16,6 +16,8 @@ spec:
       - name: host-local-tools
         image: host-local-tools
         volumeMounts:
+        - name: cnfpath
+          mountPath: /opt/cni/example.conf
         - name: varlog
           mountPath: /var/log
         - name: appini
@@ -27,6 +29,9 @@ spec:
 #      nodeSelector:
 #        rdma: support
       volumes:
+      - name: varlog
+        hostPath:
+          path: /opt/01master.cnf
       - name: varlog
         hostPath:
           path: /var/log/
