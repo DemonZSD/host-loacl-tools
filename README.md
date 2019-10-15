@@ -15,7 +15,7 @@ write ip ranges to /etc/cni/multus/net.d/xxx.cnf.
     SavePath = /opt/example.conf   # 写入配置文件的位置
     
     [VFConfig]
-    VFName = ifs0     # master name  mallnox PV name
+    VFName = ifs0     # master name  mallanox PV name
     Name = sriov-cnf  # cni network resource name
     Type = sriov  # cni network type
     Mode = bridge
@@ -24,8 +24,8 @@ write ip ranges to /etc/cni/multus/net.d/xxx.cnf.
     Subnet = 188.188.0.1/16  #pre-allocate ip mask
     
     [EtcdConfig]  
-    # cluster etcd ips, splited by whitespace " ",
-    # such as EtcdAddr = 192.168.0.157:2379  192.168.0.158:2379 
+    # cluster etcd servers, which separated by whitespace " ",
+    # such as: EtcdAddr = 192.168.0.157:2379  192.168.0.158:2379 
     EtcdAddr = 192.168.0.157:2379  
     
     [LogConfig]
