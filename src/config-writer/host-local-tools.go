@@ -74,7 +74,9 @@ func main() {
 	//}
 
 	DoTask(lockKey, vfNum, initHostLocal, AllocateIp)
-	time.Sleep(1 * time.Second)
+	for {
+		time.Sleep(1 * time.Second)
+	}
 }
 
 func AllocateIp(hostlocal *types.HostLocal) error{
