@@ -1,0 +1,44 @@
+appVersion: apps/v1
+kind: ConfigMap
+metadata:
+  name: host-local-tools-ini
+  namespace: kube-system
+data:
+  app.ini: |-
+    [PathConfig]
+    SavePath = /opt/aaa.conf
+    [VFConfig]
+    VFName = ifs0     # master name
+    Name = sriov-cnf
+    Type = sriov
+    Mode = bridge
+    [IPAllocate]
+    Subnet = 188.188.0.1/16
+    [EtcdConfig]
+    EtcdAddr = 192.168.0.157:2379
+    [LogConfig]
+    LogPath = /var/log
+---
+appVersion: apps/v1
+kind: ConfigMap
+metadata:
+  name: host-local-template-json
+  namespace: kube-system
+data:
+  host-local-template.json: |-
+    {
+      "name": "mynet",
+      "type": "ipvlan",
+      "if0": "enp24s0",
+      "mode": "bridge",
+      "ipam": {
+        "type": "host-local",
+        "subnet": "10.10.0.0/16",
+        "rangeStart": "10.10.1.20",
+        "rangeEnd": "10.10.3.50",
+        "gateway": "10.10.0.254",
+        "routes": [
+          { "dst": "0.0.0.0/0" }
+        ]
+      }
+    }
