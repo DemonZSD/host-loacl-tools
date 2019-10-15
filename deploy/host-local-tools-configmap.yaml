@@ -6,10 +6,10 @@ metadata:
 data:
   app.ini: |
     [PathConfig]
-    SavePath = /opt/cni/09-multus.conf
+    SavePath = /opt/cni/sriov-conf.conf
     [VFConfig]
-    VFName = ifs0     # master name
-    Name = sriov-cnf
+    VFName = enp24s0     # master name
+    Name = sriov-conf
     Type = sriov
     Mode = bridge
     [IPAllocate]
