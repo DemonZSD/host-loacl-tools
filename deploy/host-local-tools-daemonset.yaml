@@ -20,10 +20,10 @@ spec:
           mountPath: /var/log
         - name: appini
           mountPath: /opt/host-local-tools/resource/app.ini
-          subPath: /path/to/app.ini
+          subPath: app.ini
         - name: template-json
           mountPath: /opt/host-local-tools/resource/host-local-template.json
-          subPath: /path/to/host-local-template.json
+          subPath: host-local-template.json
 #      nodeSelector:
 #        rdma: support
       volumes:
@@ -32,13 +32,13 @@ spec:
           path: /var/log/
       - name: appini
         configMap:
-          name: host-local-tools-ini
+          name: host-local-tools
           items:
           - key: app.ini
-            path: /path/to/app.ini
+            path: app.ini
       - name: template-json
         configMap:
-          name: host-local-template-json
+          name: host-local-tools
           items:
           - key: host-local-template.json
-            path: /path/to/host-local-template.json
+            path: host-local-template.json

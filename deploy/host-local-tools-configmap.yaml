@@ -1,10 +1,10 @@
-appVersion: apps/v1
+apiVersion: apps/v1
 kind: ConfigMap
 metadata:
-  name: host-local-tools-ini
+  name: host-local-tools
   namespace: kube-system
 data:
-  app.ini: |-
+  app.ini: |
     [PathConfig]
     SavePath = /opt/aaa.conf
     [VFConfig]
@@ -18,14 +18,7 @@ data:
     EtcdAddr = 192.168.0.157:2379
     [LogConfig]
     LogPath = /var/log
----
-appVersion: apps/v1
-kind: ConfigMap
-metadata:
-  name: host-local-template-json
-  namespace: kube-system
-data:
-  host-local-template.json: |-
+  host-local-template.json: |
     {
       "name": "mynet",
       "type": "ipvlan",

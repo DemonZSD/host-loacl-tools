@@ -8,6 +8,7 @@ import (
 	"os"
 	"github.com/sirupsen/logrus"
 	"config-writer/log"
+	"strings"
 )
 
 
@@ -39,11 +40,26 @@ func ReadJsonFile(path string) (hostlocal *types.HostLocal, err error) {
 }
 // write data to file
 func WriteJsonToFile(path string, data interface{}) error{
+	spliteStr := "/"
 	preData, err := json.MarshalIndent(data, "", " ")
 	if err != nil {
 		log.Errorln(fmt.Sprintf("parse data failed: %v", err))
 		return err
 	}
+	if strings.Contains(path, "/"){
+		spliteStr = "/"
+	}else if strings.Contains(path, "\\") {
+		spliteStr = "\\"
+	}
+
+	tempPath := fmt.Sprint(path[0:strings.LastIndex(path,spliteStr)])
+	err = os.MkdirAll(tempPath, 0644)
+	if err != nil {
+		log.Errorln(err)
+	} else {
+		log.Infoln(fmt.Sprintf("mkdir path: %s success", path))
+	}
+
 	err = ioutil.WriteFile(path, preData, 0644)
 	if err != nil {
 		log.Errorln(fmt.Sprintf("write data to file %s failed: %v", path, err))
