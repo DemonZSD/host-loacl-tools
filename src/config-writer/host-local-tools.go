@@ -92,7 +92,8 @@ func AllocateIp(hostlocal *types.HostLocal) error {
 	hostlocal.Name = cfg.Name
 	hostlocal.Type = cfg.Type
 	hostlocal.Mode = cfg.Mode
-	return utils.WriteJsonToFile(cfg.SavePath, hostlocal)
+	path := "/opt/cni/" + cfg.SriovCfgFileName
+	return utils.WriteJsonToFile(path, hostlocal)
 }
 
 func DoTask(localKey string, vfNum int, hostlocal *types.HostLocal, allocateIP func(*types.HostLocal) error) {

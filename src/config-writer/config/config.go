@@ -15,16 +15,16 @@ type AppConfig struct {
 }
 
 type PathConfig struct {
-	SavePath string
+	SriovCfgFileName string
 }
 type LogConfig struct {
 	LogPath string
 }
 type VFConfig struct {
 	VFName string
-	Name string
-	Type string
-	Mode string
+	Name   string
+	Type   string
+	Mode   string
 }
 type IPAllocate struct {
 	Subnet string

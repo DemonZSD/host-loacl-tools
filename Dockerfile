@@ -1,6 +1,7 @@
 FROM golang:latest
 LABEL maintainer="Weshzhu"
 WORKDIR /opt/host-local-tools
+RUN mkdir -p /opt/cni/ /opt/device
 ENV CGO_ENABLED=0 \
     GOARCH=amd64 \
     GOPATH=/opt/host-local-tools

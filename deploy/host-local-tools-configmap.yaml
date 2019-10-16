@@ -6,7 +6,7 @@ metadata:
 data:
   app.ini: |
     [PathConfig]
-    SavePath = /opt/cni/sriov-conf.conf
+    SriovCfgFileName = sriov-conf.conf
     [VFConfig]
     VFName = enp24s0     # master name
     Name = sriov-conf
