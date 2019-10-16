@@ -18,6 +18,8 @@ spec:
         volumeMounts:
         - name: cnfpath
           mountPath: /opt/cni/
+        - name: numvfs
+          mountPath: /opt/device/
         - name: varlog
           mountPath: /var/log
         - name: appini

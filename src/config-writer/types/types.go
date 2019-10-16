@@ -3,12 +3,13 @@ package types
 import (
 	"fmt"
 	"github.com/containernetworking/cni/pkg/types"
-	"net"
 	"io/ioutil"
-	"strings"
-	"strconv"
+	"net"
 	"os"
+	"strconv"
+	"strings"
 )
+
 // 读取 虚拟网卡个数
 type VFInfo struct {
 	Count  int
@@ -27,11 +28,11 @@ type IPAM struct {
 }
 
 type Range struct {
-	RangeStart net.IP      `json:"rangeStart,omitempty"` // The first ip, inclusive
-	RangeEnd   net.IP      `json:"rangeEnd,omitempty"`   // The last ip, inclusive
+	RangeStart net.IP       `json:"rangeStart,omitempty"` // The first ip, inclusive
+	RangeEnd   net.IP       `json:"rangeEnd,omitempty"`   // The last ip, inclusive
 	Subnet     *types.IPNet `json:"subnet"`
-	Gateway    net.IP      `json:"gateway,omitempty"`
-	Routes     []Route     `json:"routes"`
+	Gateway    net.IP       `json:"gateway,omitempty"`
+	Routes     []Route      `json:"routes"`
 }
 
 type Route struct {
@@ -43,48 +44,48 @@ func (r *Route) String() string {
 	return fmt.Sprintf("%+v", *r)
 }
 
-func (rangeIp *Range) SetIpRanges(begain , end net.IP){
+func (rangeIp *Range) SetIpRanges(begain, end net.IP) {
 	if CompareIp(begain, end) {
 		rangeIp.RangeStart = begain
 		rangeIp.RangeEnd = end
 	}
 }
-func (rangeIp *Range)SetSubnet(subnet string){
+func (rangeIp *Range) SetSubnet(subnet string) {
 	ipv4Net, err := types.ParseCIDR(subnet)
-	if err != nil{
+	if err != nil {
 		ipv4Net = nil
 	}
 	rangeIp.Subnet.IP = ipv4Net.IP
 	rangeIp.Subnet.Mask = ipv4Net.Mask
 }
 
-func (rangeIp *Range)SetGateway(subnet string){
+func (rangeIp *Range) SetGateway(subnet string) {
 	ipv4Net, err := types.ParseCIDR(subnet)
-	if err != nil{
+	if err != nil {
 		ipv4Net = nil
 	}
 	rangeIp.Gateway = ipv4Net.IP
 }
-func CompareIp(startIp, endIp net.IP) bool{
-	startIPArry := strings.Split(startIp.String(),".")
-	endIPArry := strings.Split(endIp.String(),".")
-	startIPNum := make([]int64,0,0)
-	endIPNum := make([]int64,0,0)
-	for index, _ := range startIPArry  {
-		tempStart, _ := strconv.ParseInt(startIPArry[index],10,64)
-		tempEnd, _ := strconv.ParseInt(endIPArry[index],10,64)
+func CompareIp(startIp, endIp net.IP) bool {
+	startIPArry := strings.Split(startIp.String(), ".")
+	endIPArry := strings.Split(endIp.String(), ".")
+	startIPNum := make([]int64, 0, 0)
+	endIPNum := make([]int64, 0, 0)
+	for index, _ := range startIPArry {
+		tempStart, _ := strconv.ParseInt(startIPArry[index], 10, 64)
+		tempEnd, _ := strconv.ParseInt(endIPArry[index], 10, 64)
 		startIPNum = append(startIPNum, tempStart)
 		endIPNum = append(endIPNum, tempEnd)
 	}
 
-	startIPNumTotal := startIPNum[0] * 256 * 256 * 256 + startIPNum[1] * 256 * 256 + startIPNum[2] * 256 + startIPNum[3]
-	endIPNumTotal := endIPNum[0] * 256 * 256 * 256 + endIPNum[1] * 256 * 256 + endIPNum[2] * 256 + endIPNum[3]
+	startIPNumTotal := startIPNum[0]*256*256*256 + startIPNum[1]*256*256 + startIPNum[2]*256 + startIPNum[3]
+	endIPNumTotal := endIPNum[0]*256*256*256 + endIPNum[1]*256*256 + endIPNum[2]*256 + endIPNum[3]
 	return startIPNumTotal < endIPNumTotal
 }
 
-func GetInitIpFromSubset(subset string) ( string, error) {
+func GetInitIpFromSubset(subset string) (string, error) {
 	ipv4Net, err := types.ParseCIDR(subset)
-	if err != nil{
+	if err != nil {
 		return "", err
 	}
 	return ipv4Net.IP.String(), nil
@@ -92,7 +93,7 @@ func GetInitIpFromSubset(subset string) ( string, error) {
 
 func (vf *VFInfo) ReadVFNum() (int, error) {
 	// TODO
-	sriovFile := fmt.Sprintf("/sys/class/net/%s/device/sriov_numvfs", vf.Master)
+	sriovFile := fmt.Sprintf("/opt/device/sriov_numvfs", vf.Master)
 	//sriovFile := fmt.Sprintf("/opt/%s/allocate", vf.Master)
 	if _, err := os.Lstat(sriovFile); err != nil {
 		return -1, fmt.Errorf("failed to open the sriov_numfs of device %q: %v", vf.Master, err)
@@ -112,4 +113,3 @@ func (vf *VFInfo) ReadVFNum() (int, error) {
 	}
 	return vfTotal, nil
 }
-
